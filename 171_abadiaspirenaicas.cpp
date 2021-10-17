@@ -3,6 +3,24 @@
 
 using namespace std;
 
+int abadiasPosibles(int cordillera[], int montanias)
+{
+
+	int masAlta = cordillera[montanias - 1];
+	int abadias = 1;
+	int i = montanias - 2;
+
+	while(i >= 0) {
+		if (cordillera[i] > masAlta) {
+			masAlta = cordillera[i];
+			++abadias;
+		}
+		--i;
+	}
+
+	return abadias;
+}
+
 int main()
 {
 	int montanias = 0;
@@ -10,25 +28,14 @@ int main()
 
 	while (montanias) {
 	
-		vector<int> cordillera;
+		int cordillera[montanias];
 		int aux;
 		for (int i = 0; i < montanias; i++) {
 			cin >> aux;
-			// lo añadimos al final del vector
-			cordillera.push_back(aux);
+			cordillera[i] = aux;
 		}
 
-		int masAlta = cordillera[montanias-1];
-		int abadias = 1;
-
-		for (int i = montanias - 2; i >= 0; i--) {
-			if (cordillera[i] > masAlta) {
-				masAlta = cordillera[i];
-				abadias++;
-			}
-		}
-
-		cout << abadias << "\n";
+		cout << abadiasPosibles(cordillera, montanias) << "\n";
 		cin >> montanias; 
 	}
 
